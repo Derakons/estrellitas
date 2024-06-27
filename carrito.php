@@ -87,6 +87,7 @@ foreach ($_SESSION['carrito'] as $item) {
             background-color: #c82333;
             border-color: #bd2130;
         }
+        
     </style>
 </head>
 <body>
