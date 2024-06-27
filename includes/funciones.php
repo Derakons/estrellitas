@@ -24,6 +24,20 @@ function calcularTotalCarrito($carrito) {
     }
     return $total;
 }
+// Función para verificar si un usuario es administrador
+function esAdministrador($usuario_id) {
+    global $conn;
+
+    $sql = "SELECT es_administrador FROM usuarios WHERE id = ?";
+    $resultado = ejecutarConsulta($sql, "i", $usuario_id);
+
+    if ($resultado && $resultado->num_rows > 0) {
+        $row = $resultado->fetch_assoc();
+        return $row['es_administrador'];
+    } else {
+        return false;
+    }
+}
 
 // Función para obtener el nombre de un producto por su ID
 function obtenerNombreProducto($producto_id) {
