@@ -263,6 +263,7 @@ CREATE TABLE `usuarios` (
 
 --
 -- Volcado de datos para la tabla `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `contrasena`, `fecha_registro`, `signo_zodiacal`, `direccion_envio`) VALUES
