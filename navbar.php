@@ -1,3 +1,14 @@
+<?php
+// Simulación de permisos de administrador para propósitos de ejemplo
+$_SESSION['es_administrador'] = true;
+
+include 'database.php';
+
+// Consulta SQL para obtener usuarios administradores
+$sql = "SELECT id, nombre FROM usuarios WHERE es_administrador = 1";
+$result = $conn->query($sql);
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -84,20 +95,14 @@
             <ul class="navbar-nav ms-auto">
             <div class="user-list">
     <?php
-    // Consulta SQL para obtener todos los usuarios y su estado de administrador
-    $sql = "SELECT id, nombre, es_administrador FROM usuarios";
-    $result = $conn->query($sql);
-
     // Mostrar botón ADMIN para usuarios administradores
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            if ($row["es_administrador"] == 1) {
-                echo '<a href="admin.php?id=' . $row["id"] . '" class="admin-button">ADMIN</a>';
-                echo '<br>'; // Añadir un salto de línea para separar los botones
-            }
+            echo '<a href="admin.php?id=' . $row["id"] . '" class="admin-button">ADMIN</a>';
+            echo '<br>'; // Añadir un salto de línea para separar los botones
         }
     } else {
-        echo "No se encontraron usuarios.";
+        echo "No se encontraron usuarios administradores.";
     }
 
     // Cerrar conexión
