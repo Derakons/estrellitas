@@ -498,8 +498,12 @@ function obtenerEstadoPedido($pedido_id) {
 function enviarCorreo($to, $subject, $message) {
     return mail($to, $subject, $message);
 }
+<?php
 function agregarProducto($datos) {
     global $conn; // Asegúrate de que $conn esté disponible
+
+    // Inicia el manejo de mensajes
+    $mensaje = '';
 
     // Validar datos del formulario
     $nombre = limpiarInput($datos['nombre']);
@@ -546,25 +550,21 @@ function agregarProducto($datos) {
         // Ejecuta la consulta
         if ($stmt->execute()) {
             // Manejo de éxito
-            $errorSubida = "Producto agregado correctamente.";
+            $mensaje = "Producto agregado correctamente.";
         } else {
-            $errorSubida = "Error al agregar el producto: " . $stmt->error;
+            $mensaje = "Error al agregar el producto: " . $stmt->error;
         }
 
         // Cierra la consulta
         $stmt->close(); 
     } else {
-        $errorSubida = "Error en la preparación de la consulta: " . $conn->error;
+        $mensaje = "Error en la preparación de la consulta: " . $conn->error;
     }
 
-    // Redireccionar al final, con o sin error
-    if (!empty($errorSubida)) {
-        $_SESSION['mensaje_error'] = $errorSubida;
-        header("Location: admin.php"); 
-    } else {
-        $_SESSION['mensaje_exito'] = $errorSubida; // Usa $errorSubida para mostrar el mensaje de éxito
-        header("Location: admin.php"); 
-    }
+    // Guardar el mensaje en la sesión y redireccionar
+    $_SESSION['mensaje'] = $mensaje;
+    header("Location: admin.php"); 
     exit;
 }
+
 ?>
