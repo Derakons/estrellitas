@@ -19,46 +19,46 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" action="admin.php" enctype="multipart/form-data" class="custom-form-horizontal">
-                        <div class="row g-3">
-                            <div class="col-md-3 text-md-end">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
                                 <label for="nombre" class="form-label">Nombre:</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col">
                                 <input type="text" class="form-control" id="nombre" name="nombre" required>
                             </div>
-                            <div class="col-md-3 text-md-end">
+                            <div class="col-auto">
                                 <label for="descripcion" class="form-label">Descripción:</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col">
                                 <textarea class="form-control" id="descripcion" name="descripcion" rows="1"></textarea>
                             </div>
-                            <div class="col-md-3 text-md-end">
+                            <div class="col-auto">
                                 <label for="precio" class="form-label">Precio (€):</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col">
                                 <input type="number" class="form-control" id="precio" name="precio" min="0" step="0.01" required>
                             </div>
-                            <div class="col-md-3 text-md-end">
+                            <div class="col-auto">
                                 <label for="imagen" class="form-label">Imagen:</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col">
                                 <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
                             </div>
-                            <div class="col-md-3 text-md-end">
+                            <div class="col-auto">
                                 <label for="categoria_id" class="form-label">Categoría:</label>
                             </div>
-                            <div class="col-md-9">
-    <select class="form-select" id="categoria_id" name="categoria_id" required>
-        <option value="">Selecciona una categoría</option>
-        <?php foreach ($categorias as $categoria) : ?>
-            <option value="<?= $categoria['id']; ?>"><?= $categoria['nombre']; ?></option>
-        <?php endforeach; ?>
-    </select>
-</div>
-                            <div class="col-md-3 text-md-end">
+                            <div class="col">
+                                <select class="form-select" id="categoria_id" name="categoria_id" required>
+                                    <option value="">Selecciona una categoría</option>
+                                    <?php foreach ($categorias as $categoria) : ?>
+                                        <option value="<?= $categoria['id']; ?>"><?= $categoria['nombre']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-auto">
                                 <label for="signos_compatibles" class="form-label">Signos Compatibles:</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col">
                                 <select class="form-select" id="signos_compatibles" name="signos_compatibles[]" multiple size="3">
                                     <?php $signos = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
                                     foreach ($signos as $signo) : ?>
