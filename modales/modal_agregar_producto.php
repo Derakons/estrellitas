@@ -114,7 +114,7 @@
 <body>
     <!-- Modal para agregar un producto -->
     <div class="modal fade" id="agregarProductoModal" tabindex="-1" aria-labelledby="agregarProductoModalLabel" aria-hidden="true">
-        <div class="modal-dialogs">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="agregarProductoModalLabel">Agregar Producto</h5>
