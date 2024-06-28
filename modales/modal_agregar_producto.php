@@ -43,14 +43,29 @@
                         </div>
                         <div class="row mb-3">
                             <label for="categoria_id" class="col-sm-2 col-form-label">Categoría:</label>
-                            <div class="col-sm-4">
+                            <div class="col-md-9">
                                 <select class="form-select" id="categoria_id" name="categoria_id" required>
                                     <option value="">Selecciona una categoría</option>
-                                    <?php foreach ($categorias as $categoria) : ?>
+                                    <?php 
+                                    // Asumiendo que $categorias es un array asociativo con la información de la base de datos
+                                    $categorias = [
+                                        1 => ['id' => 1, 'nombre' => 'Ropa'],
+                                        2 => ['id' => 2, 'nombre' => 'Adornos'],
+                                        3 => ['id' => 3, 'nombre' => 'Libros'],
+                                        4 => ['id' => 4, 'nombre' => 'Cristales'],
+                                        5 => ['id' => 5, 'nombre' => 'Inciensos'],
+                                        6 => ['id' => 6, 'nombre' => 'Cartas del Tarot'],
+                                        7 => ['id' => 7, 'nombre' => 'Runas'],
+                                        8 => ['id' => 8, 'nombre' => 'Aceites Esenciales'],
+                                        9 => ['id' => 9, 'nombre' => 'Joyería'],
+                                        10 => ['id' => 10, 'nombre' => 'Decoración']
+                                    ];
+
+                                    foreach ($categorias as $categoria) : ?>
                                         <option value="<?= $categoria['id']; ?>"><?= $categoria['nombre']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div>
+                            </div>>
                             <label for="signos_compatibles" class="col-sm-2 col-form-label">Signos Compatibles:</label>
                             <div class="col-sm-4">
                                 <select class="form-select" id="signos_compatibles" name="signos_compatibles[]" multiple size="3">
