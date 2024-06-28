@@ -81,11 +81,7 @@
     require_once 'includes/database.php';
     require_once 'includes/funciones.php';
 
-    // Verificar si el usuario ha iniciado sesión
-    if (!isset($_SESSION['usuario_id'])) {
-        header("Location: login.php");
-        exit;
-    }
+    
 
     // Obtener ID del pedido de la URL
     $pedido_id = isset($_GET['id']) ? (int)limpiarInput($_GET['id']) : null;

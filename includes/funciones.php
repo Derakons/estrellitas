@@ -562,7 +562,7 @@ function agregarProducto($datos) {
 
     // Guardar el mensaje en la sesión y redireccionar
     $_SESSION['mensaje'] = $mensaje;
-
+    header("Location: admin.php"); 
     exit;
 }
 
