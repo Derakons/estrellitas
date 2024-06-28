@@ -119,7 +119,9 @@ body {
 /* Estilos para el modal */
 .modal-dialog.modal-xl {
     max-width: 2000px; /* Ajusta según el tamaño necesario */
+    max-height: 400px; /* Ajusta según el tamaño necesario */
     margin: 1.75rem auto; /* Centered alignment */
+
 }
 
 .modal-content {
