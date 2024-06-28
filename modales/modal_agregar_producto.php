@@ -32,14 +32,30 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="precio" class="col-sm-2 col-form-label">Precio (€):</label>
+                            <label for="precio" class="col-sm-2 col-form-label">Precio (S/.):</label>
                             <div class="col-sm-4">
                                 <input type="number" class="form-control" id="precio" name="precio" min="0" step="0.01" required>
                             </div>
                             <label for="imagen" class="col-sm-2 col-form-label">Imagen:</label>
-                            <div class="col-sm-4">
-                                <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
-                            </div>
+<div class="col-sm-4">
+    <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" onchange="previewImage(event)">
+    <br>
+    <img id="preview" src="#" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;">
+</div>
+<script>
+function previewImage(event) {
+    var input = event.target;
+    var preview = document.getElementById('preview');
+    preview.style.display = 'block';
+
+    var reader = new FileReader();
+    reader.onload = function() {
+        preview.src = reader.result;
+    };
+
+    reader.readAsDataURL(input.files[0]);
+}
+</script>
                         </div>
                         <div class="row mb-3">
                             <label for="categoria_id" class="col-sm-2 col-form-label">Categoría:</label>
