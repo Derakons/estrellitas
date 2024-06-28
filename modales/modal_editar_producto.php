@@ -1,78 +1,141 @@
-<!-- Modal para editar un producto -->
-<div class="modal fade" id="editarProductoModal" tabindex="-1" aria-labelledby="editarProductoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editarProductoModalLabel">Editar Producto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="admin.php" enctype="multipart/form-data">
-                    <input type="hidden" name="producto_id" id="editarProductoId">
-                    <div class="mb-3">
-                        <label for="editarNombre" class="form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="editarNombre" name="nombre" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editarDescripcion" class="form-label">Descripción:</label>
-                        <textarea class="form-control" id="editarDescripcion" name="descripcion" rows="3"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editarPrecio" class="form-label">Precio (€):</label>
-                        <input type="number" class="form-control" id="editarPrecio" name="precio" min="0" step="0.01" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editarImagen" class="form-label">Imagen Actual:</label>
-                        <img src="" id="imagenActual" alt="Imagen actual del producto" style="max-width: 200px;"> 
-                        <br><br>
-                        <label for="editarImagen" class="form-label">Nueva Imagen:</label>
-                        <input type="file" class="form-control" id="editarImagen" name="imagen">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editarCategoriaId" class="form-label">Categoría:</label>
-                        <select class="form-select" id="editarCategoriaId" name="categoria_id" required>
-                            <?php foreach ($categorias as $categoria) : ?>
-                                <option value="<?= $categoria['id']; ?>"><?= $categoria['nombre']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editarSignosCompatibles" class="form-label">Signos Compatibles:</label>
-                        <select class="form-select" id="editarSignosCompatibles" name="signos_compatibles[]" multiple>
-                            <option value="Aries">Aries</option>
-                            <option value="Tauro">Tauro</option>
-                            <!-- Agrega el resto de los signos -->
-                        </select>
-                    </div>
-                    <button type="submit" name="editar_producto" class="btn btn-primary">Guardar Cambios</button>
-                </form>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Horizontal Mejorado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Estilos del modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            position: relative;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .modal-close {
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+        }
+
+        .modal-body {
+            padding: 20px 0;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+        }
+
+        .modal-footer button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-footer button:hover {
+            background-color: #0056b3;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal.active .modal-content {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal Trigger Button -->
+    <button id="open-modal" style="padding: 10px 20px; border-radius: 5px; border: none; background: #007bff; color: white; cursor: pointer;">Abrir Modal</button>
+
+    <!-- Modal -->
+    <div id="modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Título del Modal</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Contenido del modal. Aquí puedes poner cualquier texto o elementos HTML que desees.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-close">Cerrar</button>
+                    <button>Aceptar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-    // JavaScript para cargar los datos del producto en el modal
-    $('#editarProductoModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Botón que activó el modal
-        var productoId = button.data('producto-id');
-        var nombre = button.data('producto-nombre');
-        var descripcion = button.data('producto-descripcion');
-        var precio = button.data('producto-precio');
-        var imagen = button.data('producto-imagen'); 
-        var categoriaId = button.data('producto-categoria-id');
-        var signosCompatibles = button.data('producto-signos-compatibles').split(","); // Convertir a array
 
-        var modal = $(this);
-        modal.find('#editarProductoId').val(productoId);
-        modal.find('#editarNombre').val(nombre);
-        modal.find('#editarDescripcion').val(descripcion);
-        modal.find('#editarPrecio').val(precio);
-        modal.find('#imagenActual').attr('src', imagen); // Mostrar la imagen actual
-        modal.find('#editarCategoriaId').val(categoriaId);
-
-        // Seleccionar los signos compatibles en el select multiple
-        $.each(signosCompatibles, function(index, signo) {
-            modal.find('#editarSignosCompatibles option[value="' + signo.trim() + '"]').prop('selected', true);
+    <script>
+        // Funcionalidad del modal
+        document.getElementById('open-modal').addEventListener('click', function() {
+            document.getElementById('modal').classList.add('active');
         });
-    });
-</script>
+
+        document.querySelectorAll('.modal-close').forEach(function(closeButton) {
+            closeButton.addEventListener('click', function() {
+                document.getElementById('modal').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
