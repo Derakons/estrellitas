@@ -310,7 +310,7 @@ if (isset($_SESSION['mensaje'])) {
         </div>
 
         <!-- Categorías -->
-        <div class="card mb-4">
+        <div class="cards mb-4">
             <div class="card-header">
                 <h5 class="card-title">
                     Categorías
@@ -357,7 +357,7 @@ if (isset($_SESSION['mensaje'])) {
         </div>
 
         <!-- Pedidos -->
-        <div class="card">
+        <div class="cards">
             <div class="card-header">
                 <h5 class="card-title">Pedidos</h5>
             </div>
