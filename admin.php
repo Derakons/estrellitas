@@ -3,6 +3,10 @@ session_start();
 
 require_once 'includes/database.php';
 require_once 'includes/funciones.php';
+include 'modales/modal_agregar_producto.php'; 
+include 'modales/modal_editar_producto.php';
+include 'modales/modal_agregar_categoria.php';
+include 'modales/modal_editar_categoria.php';
 
 // Redirigir si el usuario no es administrador
 if (!esAdministrador()) {
@@ -121,10 +125,7 @@ function editarProducto($datos) {
     $stmt->close();
 
 }
-include 'modales/modal_agregar_producto.php'; 
-include 'modales/modal_editar_producto.php';
-include 'modales/modal_agregar_categoria.php';
-include 'modales/modal_editar_categoria.php';
+
 function eliminarProducto($productoId) {
     global $conn;
     $productoId = intval($productoId);
