@@ -65,16 +65,21 @@
                                         <option value="<?= $categoria['id']; ?>"><?= $categoria['nombre']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div>>
-                            <label for="signos_compatibles" class="col-sm-2 col-form-label">Signos Compatibles:</label>
-                            <div class="col-sm-4">
-                                <select class="form-select" id="signos_compatibles" name="signos_compatibles[]" multiple size="3">
-                                    <?php $signos = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
-                                    foreach ($signos as $signo) : ?>
-                                        <option value="<?= $signo; ?>"><?= $signo; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
                             </div>
+                            <div class="col-sm-4">
+    <?php 
+    $signos = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
+    foreach ($signos as $signo) : 
+    ?>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="signo_<?= $signo; ?>" name="signos_compatibles[]" value="<?= $signo; ?>">
+        <label class="form-check-label" for="signo_<?= $signo; ?>">
+            <?= $signo; ?>
+        </label>
+    </div>
+    <?php endforeach; ?>
+</div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
