@@ -26,70 +26,69 @@
 <body>
 <!-- Modal para agregar un producto -->
 <div class="modal fade" id="agregarProductoModal" tabindex="-1" aria-labelledby="agregarProductoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="agregarProductoModalLabel">Agregar Producto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="admin.php" enctype="multipart/form-data" class="row g-3">
-                        <div class="col-md-6">
-                            <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarProductoModalLabel">Agregar Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="admin.php" enctype="multipart/form-data" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="nombre" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="precio" class="form-label">Precio (S/.):</label>
+                        <div class="input-group">
+                            <span class="input-group-text">S/.</span>
+                            <input type="number" class="form-control" id="precio" name="precio" min="0" step="0.01" required>
                         </div>
-                        <div class="col-md-6">
-                            <label for="precio" class="form-label">Precio (S/.):</label>
-                            <div class="input-group">
-                                <span class="input-group-text">S/.</span>
-                                <input type="number" class="form-control" id="precio" name="precio" min="0" step="0.01" required>
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="col-12">
-                            <label for="descripcion" class="form-label">Descripción:</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="imagen" class="form-label">Imagen:</label>
-                            <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" onchange="previewImage(event)">
-                            <img id="preview" src="#" alt="Vista previa de la imagen" class="mt-2 img-thumbnail" style="max-width: 100%; max-height: 200px; display: none;">
-                        </div>
-                        <script>
-                            function previewImage(event) {
-                                var input = event.target;
-                                var preview = document.getElementById('preview');
-                                preview.style.display = 'block';
+                    <div class="col-12">
+                        <label for="descripcion" class="form-label">Descripción:</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="imagen" class="form-label">Imagen:</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" onchange="previewImage(event)">
+                        <img id="preview" src="#" alt="Vista previa de la imagen" class="mt-2 img-thumbnail" style="max-width: 100%; max-height: 200px; display: none;">
+                    </div>
+                    <script>
+                        function previewImage(event) {
+                            var input = event.target;
+                            var preview = document.getElementById('preview');
+                            preview.style.display = 'block';
 
-                                var reader = new FileReader();
-                                reader.onload = function() {
-                                    preview.src = reader.result;
-                                };
+                            var reader = new FileReader();
+                            reader.onload = function() {
+                                preview.src = reader.result;
+                            };
 
-                                reader.readAsDataURL(input.files[0]);
-                            }
-                        </script>
-                        <div class="col-md-6">
-                            <label for="categoria_id" class="form-label">Categoría:</label>
-                            <select class="form-select" id="categoria_id" name="categoria_id" required>
-                                <option value="">Selecciona una categoría</option>
-                                <?php foreach ($categorias as $categoria) { ?>
-                                    <option value="<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></option>
-                                <?php } ?>
-                            </select>
-
-                        </div>
-                        <?php include 'signos_compatibles.php'; ?>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="agregar_producto" class="btn btn-primary">Agregar Producto</button>
-                        </div>
-                    </form>
-                </div>
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    </script>
+                    <div class="col-md-6">
+                        <label for="categoria_id" class="form-label">Categoría:</label>
+                        <select class="form-select" id="categoria_id" name="categoria_id" required>
+                            <option value="">Selecciona una categoría</option>
+                            <?php foreach ($categorias as $categoria) { ?>
+                                <option value="<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <?php include 'signos_compatibles.php'; ?>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" name="agregar_producto" class="btn btn-primary">Agregar Producto</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
