@@ -19,9 +19,9 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" action="admin.php" enctype="multipart/form-data" class="custom-form-horizontal">
-                        <div class="col sm-4">
+                        <div class="row sm-4">
                             <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
-                            <div class="col-sm-4">
+                            <div class="row-sm-4">
                                 <input type="text" class="form-control" id="nombre" name="nombre" required>
                             </div>
                         </div>
