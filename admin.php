@@ -48,43 +48,7 @@ $pedidos = obtenerPedidos();
 
 // Funciones del administrador (en includes/funciones.php)
 
-function agregarProducto($datos) {
-    global $conn;
 
-    // Validar datos del formulario
-    $nombre = limpiarInput($datos['nombre']);
-    $descripcion = limpiarInput($datos['descripcion']);
-    $precio = floatval($datos['precio']);
-    $categoriaId = intval($datos['categoria_id']);
-    $signosCompatibles = isset($datos['signos_compatibles']) ? implode(',', $datos['signos_compatibles']) : '';
-
-    // Manejo de imágenes 
-    $imagen = '';
-    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-        $carpetaDestino = 'img/productos/'; // Asegúrate de que esta carpeta exista y tenga permisos de escritura
-        $nombreArchivo = $_FILES['imagen']['name'];
-        $rutaImagen = $carpetaDestino . basename($nombreArchivo);
-
-        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaImagen)) {
-            $imagen = $rutaImagen;
-        } else {
-            echo "Error al subir la imagen.";
-        }
-    }
-
-    $sql = "INSERT INTO productos (nombre, descripcion, precio, imagen, categoria_id, signos_compatibles) 
-            VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssdiss", $nombre, $descripcion, $precio, $imagen, $categoriaId, $signosCompatibles);
-
-    if ($stmt->execute()) {
-        header("Location: admin.php");
-        exit;
-    } else {
-        echo "Error al agregar el producto: " . $stmt->error;
-    }
-    $stmt->close();
-}
 
 function editarProducto($datos) {
     global $conn;
