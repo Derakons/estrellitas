@@ -85,6 +85,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-4">
+                            <label for="categoria_id" class="col-sm-2 col-form-label">Signos Compatibles:</label>
                                 <?php 
                                 $signos = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
                                 foreach ($signos as $signo) : 
