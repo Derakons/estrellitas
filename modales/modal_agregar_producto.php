@@ -48,13 +48,13 @@
                                 <label for="categoria_id" class="form-label">Categoría:</label>
                             </div>
                             <div class="col-md-9">
-                                <select class="form-select" id="categoria_id" name="categoria_id" required>
-                                    <option value="">Selecciona una categoría</option>
-                                    <?php foreach ($categorias as $categoria) : ?>
-                                        <option value="<?= $categoria['id']; ?>"><?= $categoria['nombre']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
+    <select class="form-select" id="categoria_id" name="categoria_id" required>
+        <option value="">Selecciona una categoría</option>
+        <?php foreach ($categorias as $categoria) : ?>
+            <option value="<?= $categoria['id']; ?>"><?= $categoria['nombre']; ?></option>
+        <?php endforeach; ?>
+    </select>
+</div>
                             <div class="col-md-3 text-md-end">
                                 <label for="signos_compatibles" class="form-label">Signos Compatibles:</label>
                             </div>
