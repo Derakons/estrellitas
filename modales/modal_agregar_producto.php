@@ -19,7 +19,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" action="admin.php" enctype="multipart/form-data" class="custom-form-horizontal">
-                        <div class="row mb-3">
+                        <div class="col-sm-4">
                             <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -85,18 +85,18 @@
                                 </select>
                             </div>
                             <div class="col-sm-4">
-    <?php 
-    $signos = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
-    foreach ($signos as $signo) : 
-    ?>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="signo_<?= $signo; ?>" name="signos_compatibles[]" value="<?= $signo; ?>">
-        <label class="form-check-label" for="signo_<?= $signo; ?>">
-            <?= $signo; ?>
-        </label>
-    </div>
-    <?php endforeach; ?>
-</div>
+                                <?php 
+                                $signos = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
+                                foreach ($signos as $signo) : 
+                                ?>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="signo_<?= $signo; ?>" name="signos_compatibles[]" value="<?= $signo; ?>">
+                                    <label class="form-check-label" for="signo_<?= $signo; ?>">
+                                        <?= $signo; ?>
+                                    </label>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
 
                         </div>
                         <div class="modal-footer">
