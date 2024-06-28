@@ -1,3 +1,13 @@
+<?php 
+session_start();
+
+require_once 'includes/database.php';
+require_once 'includes/funciones.php';
+include 'modales/modal_agregar_producto.php'; 
+include 'modales/modal_editar_producto.php';
+include 'modales/modal_agregar_categoria.php';
+include 'modales/modal_editar_categoria.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

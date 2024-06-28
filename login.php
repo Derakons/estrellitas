@@ -100,7 +100,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h2 class="card-title">¡Bienvenido, ' . htmlspecialchars($_SESSION['usuario_nombre']) . '!</h2>
-                                <p class="card-text">Ya has iniciado sesión. <a href="logout.php">Cerrar sesión</a></p>
+                                <p class="card-text">Ya has iniciado sesión. <a href="index.php">inicio</a></p>
                             </div>
                         </div>
                     </div>
