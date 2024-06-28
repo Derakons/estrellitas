@@ -229,7 +229,10 @@ function cambiarEstadoPedido($datos) {
     }
     $stmt->close();
 }
-
+if (isset($_SESSION['mensaje'])) {
+    echo "<div class='mensaje'>" . $_SESSION['mensaje'] . "</div>";
+    unset($_SESSION['mensaje']);
+}
 ?>
 
 <!DOCTYPE html>
