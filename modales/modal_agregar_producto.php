@@ -31,7 +31,7 @@
                                 <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row sm-4">
                             <label for="precio" class="col-sm-2 col-form-label">Precio (S/.):</label>
                             <div class="col-sm-4">
                                 <input type="number" class="form-control" id="precio" name="precio" min="0" step="0.01" required>
