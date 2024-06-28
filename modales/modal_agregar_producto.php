@@ -78,22 +78,7 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Signos Compatibles:</label>
-                            <div class="form-check">
-                                <?php 
-                                $signos = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
-                                foreach ($signos as $signo) : 
-                                ?>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="signo_<?= $signo; ?>" name="signos_compatibles[]" value="<?= $signo; ?>">
-                                    <label class="form-check-label" for="signo_<?= $signo; ?>">
-                                        <?= $signo; ?>
-                                    </label>
-                                </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
+                        <?php include 'signos_compatibles.php'; ?>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                             <button type="submit" name="agregar_producto" class="btn btn-primary">Agregar Producto</button>
