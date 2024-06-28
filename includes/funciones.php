@@ -39,6 +39,21 @@ function esAdministrador($usuario_id) {
     }
 }
 
+// Función para obtener todos los productos
+function obtenerProductos() {
+    global $conn;
+
+    $sql = "SELECT * FROM productos";
+    $resultado = ejecutarConsulta($sql); // No necesita parámetros en este caso
+
+    $productos = [];
+    if ($resultado && $resultado->num_rows > 0) {
+        while ($row = $resultado->fetch_assoc()) {
+            $productos[] = $row;
+        }
+    }
+    return $productos;
+}
 // Función para obtener el nombre de un producto por su ID
 function obtenerNombreProducto($producto_id) {
     global $conn;
