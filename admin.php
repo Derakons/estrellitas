@@ -14,7 +14,7 @@ if (!esAdministrador()) {
     exit;
 }
 
-// Manejar acciones del administrador
+// Manejar acciones del administradores
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch (true) {
         case isset($_POST['agregar_producto']):
