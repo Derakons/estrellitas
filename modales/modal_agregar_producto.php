@@ -25,8 +25,12 @@
                         </div>
                         <div class="col-md-6">
                             <label for="precio" class="form-label">Precio (S/.):</label>
-                            <input type="number" class="form-control" id="precio" name="precio" min="0" step="0.01" required>
+                            <div class="input-group">
+                                <span class="input-group-text">S/.</span>
+                                <input type="number" class="form-control" id="precio" name="precio" min="0" step="0.01" required>
+                            </div>
                         </div>
+
                         <div class="col-12">
                             <label for="descripcion" class="form-label">Descripción:</label>
                             <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
