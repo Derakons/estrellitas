@@ -15,7 +15,7 @@
         }
 
         .modal-dialog {
-            max-width: 1500px; /* Ajusta según el tamaño necesario */
+            max-width: 2000px; /* Ajusta según el tamaño necesario */
         }
 
         .modal-content {
