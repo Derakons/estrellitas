@@ -54,6 +54,19 @@ function obtenerProductos() {
     }
     return $productos;
 }
+function obtenerCategorias() {
+    global $conn;
+    $sql = "SELECT * FROM categorias";
+    $result = $conn->query($sql);
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+function obtenerPedidos() {
+    global $conn;
+    $sql = "SELECT p.*, u.nombre, u.apellidos FROM pedidos p JOIN usuarios u ON p.usuario_id = u.id";
+    $result = $conn->query($sql);
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
 // Función para obtener el nombre de un producto por su ID
 function obtenerNombreProducto($producto_id) {
     global $conn;

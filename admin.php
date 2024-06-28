@@ -35,7 +35,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // ...
     }
 }
+// ... (código existente)
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['agregar_producto'])) {
+        // Obtener datos del formulario
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $precio = $_POST['precio'];
+        $categoriaId = $_POST['categoria_id'];
+        // Validar datos
+        // ...
+        // Insertar producto en la base de datos
+        $sql = "INSERT INTO productos (nombre, descripcion, precio, categoria_id) VALUES ('$nombre', '$descripcion', $precio, $categoriaId)";
+        if ($conn->query($sql) === TRUE) {
+            // Redirigir a la página de administración
+            header("Location: admin.php");
+            exit;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    } elseif (isset($_POST['editar_producto'])) {
+        // Obtener datos del formulario y ID del producto
+        $productoId = $_POST['producto_id'];
+        // ... (resto del código para editar producto)
+    } elseif (isset($_POST['eliminar_producto'])) {
+        // Obtener ID del producto
+        $productoId = $_POST['producto_id'];
+        // Eliminar producto de la base de datos
+        $sql = "DELETE FROM productos WHERE id = $productoId";
+        if ($conn->query($sql) === TRUE) {
+            // Redirigir a la página de administración
+            header("Location: admin.php");
+            exit;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+    // ... (resto de las acciones de los formularios)
+}
+
+// ... (resto del código)
 // Obtener datos para la página
 $productos = obtenerProductos();
 $categorias = obtenerCategorias();
