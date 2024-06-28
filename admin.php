@@ -49,6 +49,20 @@ $pedidos = obtenerPedidos();
 // Funciones del administrador (en includes/funciones.php)
 
 
+    // ...
+
+    if (isset($_SESSION['mensaje_error'])) {
+        echo '<div class="alert alert-danger">' . $_SESSION['mensaje_error'] . '</div>';
+        unset($_SESSION['mensaje_error']); // Elimina el mensaje de la sesión
+    }
+
+    if (isset($_SESSION['mensaje_exito'])) {
+        echo '<div class="alert alert-success">' . $_SESSION['mensaje_exito'] . '</div>';
+        unset($_SESSION['mensaje_exito']); // Elimina el mensaje de la sesión
+    }
+
+    // ... 
+
 
 function editarProducto($datos) {
     global $conn;
