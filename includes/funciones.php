@@ -499,18 +499,26 @@ function enviarCorreo($to, $subject, $message) {
     return mail($to, $subject, $message);
 }
 function agregarProducto($datos) {
-    global $conn;
+    global $conn; // Asegúrate de que $conn esté disponible
 
-    // ... (Resto del código de validación y manejo de datos) ...
+    // Validar datos del formulario
+    $nombre = limpiarInput($datos['nombre']);
+    $descripcion = limpiarInput($datos['descripcion']);
+    $precio = floatval($datos['precio']);
+    $categoriaId = intval($datos['categoria_id']);
+    $signosCompatibles = isset($datos['signos_compatibles']) ? implode(',', $datos['signos_compatibles']) : '';
 
+    // Manejo de imágenes
     $imagen = '';
-    $errorSubida = ''; // Variable para almacenar mensaje de error
+    $errorSubida = '';
 
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-        $carpetaDestino = 'img/productos/';
+        $carpetaDestino = '../img/productos/'; // Ajusta la ruta si es necesario
 
         if (!is_dir($carpetaDestino)) {
-            mkdir($carpetaDestino, 0755, true); 
+            if (!mkdir($carpetaDestino, 0755, true)) {
+                $errorSubida = "Error al crear la carpeta de imágenes: " . error_get_last()['message'];
+            }
         }
 
         $nombreArchivo = $_FILES['imagen']['name'];
@@ -519,27 +527,43 @@ function agregarProducto($datos) {
         if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaImagen)) {
             $imagen = $rutaImagen;
         } else {
-            $errorSubida = "Error al subir la imagen. Código de error: " . $_FILES['imagen']['error']; 
+            $errorSubida = "Error al subir la imagen. Código: " . $_FILES['imagen']['error'];
         }
     }
 
-    // ... (Resto del código para insertar en la base de datos) ...
+    // Consulta SQL para agregar el producto
+    $sql = "INSERT INTO productos (nombre, descripcion, precio, imagen, categoria_id, signos_compatibles) 
+            VALUES (?, ?, ?, ?, ?, ?)";
 
-    if ($stmt->execute()) {
-        // Redireccionar sin enviar salida previa
-        header("Location: admin.php?exito=1"); // Puedes usar un parámetro GET para indicar éxito
-        exit; 
+    // Prepara la consulta
+    $stmt = $conn->prepare($sql);
+
+    // Maneja errores en la preparación de la consulta
+    if ($stmt) { 
+        // Vincula los parámetros
+        $stmt->bind_param("ssdiss", $nombre, $descripcion, $precio, $imagen, $categoriaId, $signosCompatibles);
+
+        // Ejecuta la consulta
+        if ($stmt->execute()) {
+            // Manejo de éxito
+            $errorSubida = "Producto agregado correctamente.";
+        } else {
+            $errorSubida = "Error al agregar el producto: " . $stmt->error;
+        }
+
+        // Cierra la consulta
+        $stmt->close(); 
     } else {
-        $errorSubida = "Error al agregar el producto a la base de datos: " . $stmt->error;
+        $errorSubida = "Error en la preparación de la consulta: " . $conn->error;
     }
-
-    $stmt->close();
 
     // Redireccionar al final, con o sin error
     if (!empty($errorSubida)) {
-        header("Location: admin.php?error=" . urlencode($errorSubida));
+        $_SESSION['mensaje_error'] = $errorSubida;
+        header("Location: admin.php"); 
     } else {
-        header("Location: admin.php?exito=1"); 
+        $_SESSION['mensaje_exito'] = $errorSubida; // Usa $errorSubida para mostrar el mensaje de éxito
+        header("Location: admin.php"); 
     }
     exit;
 }
