@@ -156,6 +156,35 @@ body {
     cursor: pointer;
     font-size: 1.2rem;
 }
+/* Estilos para el navbar personalizado */
+.custom-nav-link {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.custom-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.custom-icon {
+    margin-right: 0.5rem;
+}
+
+.custom-dropdown-menu {
+    background-color: #343a40; /* Color de fondo del menú desplegable */
+}
+
+.custom-dropdown-item {
+    color: #fff;
+}
+
+.custom-dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
 
           /*!
  *   AdminLTE v3.2.0

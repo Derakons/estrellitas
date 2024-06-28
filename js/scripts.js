@@ -1,3 +1,105 @@
+
+    // Función para cambiar el color del texto con efecto de neón
+    function cambiarColorTexto() {
+        var headerText = document.getElementById('headerText');
+        var colores = ['#39ff14', '#ff00ff', '#00ffff', '#ffff00', '#ff4500', '#0000ff', '#ff1493']; // Lista de colores a utilizar
+        var indiceColor = 0;
+
+        setInterval(function() {
+            var colorActual = colores[indiceColor];
+            var sombra = '';
+
+            switch(colorActual) {
+                case '#39ff14': // Verde neón
+                    sombra = `
+                        0 0 5px rgba(255, 255, 255, 0.5),
+                        0 0 10px rgba(255, 255, 255, 0.7),
+                        0 0 15px rgba(255, 255, 255, 0.9),
+                        0 0 20px #39ff14,
+                        0 0 40px #39ff14,
+                        0 0 60px #39ff14,
+                        0 0 80px #39ff14,
+                        0 0 100px #39ff14;`;
+                    break;
+                case '#ff00ff': // Magenta
+                    sombra = `
+                        0 0 5px rgba(255, 255, 255, 0.5),
+                        0 0 10px rgba(255, 255, 255, 0.7),
+                        0 0 15px rgba(255, 255, 255, 0.9),
+                        0 0 20px #ff00ff,
+                        0 0 40px #ff00ff,
+                        0 0 60px #ff00ff,
+                        0 0 80px #ff00ff,
+                        0 0 100px #ff00ff;`;
+                    break;
+                case '#00ffff': // Cyan
+                    sombra = `
+                        0 0 5px rgba(255, 255, 255, 0.5),
+                        0 0 10px rgba(255, 255, 255, 0.7),
+                        0 0 15px rgba(255, 255, 255, 0.9),
+                        0 0 20px #00ffff,
+                        0 0 40px #00ffff,
+                        0 0 60px #00ffff,
+                        0 0 80px #00ffff,
+                        0 0 100px #00ffff;`;
+                    break;
+                case '#ffff00': // Amarillo
+                    sombra = `
+                        0 0 5px rgba(255, 255, 255, 0.5),
+                        0 0 10px rgba(255, 255, 255, 0.7),
+                        0 0 15px rgba(255, 255, 255, 0.9),
+                        0 0 20px #ffff00,
+                        0 0 40px #ffff00,
+                        0 0 60px #ffff00,
+                        0 0 80px #ffff00,
+                        0 0 100px #ffff00;`;
+                    break;
+                case '#ff4500': // Naranja
+                    sombra = `
+                        0 0 5px rgba(255, 255, 255, 0.5),
+                        0 0 10px rgba(255, 255, 255, 0.7),
+                        0 0 15px rgba(255, 255, 255, 0.9),
+                        0 0 20px #ff4500,
+                        0 0 40px #ff4500,
+                        0 0 60px #ff4500,
+                        0 0 80px #ff4500,
+                        0 0 100px #ff4500;`;
+                    break;
+                case '#0000ff': // Azul
+                    sombra = `
+                        0 0 5px rgba(255, 255, 255, 0.5),
+                        0 0 10px rgba(255, 255, 255, 0.7),
+                        0 0 15px rgba(255, 255, 255, 0.9),
+                        0 0 20px #0000ff,
+                        0 0 40px #0000ff,
+                        0 0 60px #0000ff,
+                        0 0 80px #0000ff,
+                        0 0 100px #0000ff;`;
+                    break;
+                case '#ff1493': // Rosa neón
+                    sombra = `
+                        0 0 5px rgba(255, 255, 255, 0.5),
+                        0 0 10px rgba(255, 255, 255, 0.7),
+                        0 0 15px rgba(255, 255, 255, 0.9),
+                        0 0 20px #ff1493,
+                        0 0 40px #ff1493,
+                        0 0 60px #ff1493,
+                        0 0 80px #ff1493,
+                        0 0 100px #ff1493;`;
+                    break;
+            }
+
+            headerText.style.color = colorActual;
+            headerText.style.textShadow = sombra;
+
+            indiceColor = (indiceColor + 1) % colores.length; // Avanza al siguiente color
+        }, 1000); // Cambia cada 1 segundo (1000 milisegundos)
+    }
+
+    // Llama a la función al cargar la página
+    window.onload = cambiarColorTexto;
+
+
 /*!
  * AdminLTE v3.2.0 (https://adminlte.io)
  * Copyright 2014-2022 Colorlib <https://colorlib.com>

@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <style>
-        .navbar {
-            background-color: transparent !important; /* Fondo transparente */
-            box-shadow: none; /* Sin sombra */
+        .navbar-custom {
+            background-color: transparent !important;
+            box-shadow: none;
         }
-        .navbar-brand {
+        .navbar-custom .navbar-brand {
             font-family: 'UnifrakturMaguntia', cursive;
             display: flex;
             align-items: center;
@@ -19,7 +21,7 @@
             position: relative;
             transform: scale(1.4);
         }
-        .btn-app {
+        .navbar-custom .btn-app {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -30,32 +32,33 @@
             border-radius: 5px;
             transform: scale(0.8);
         }
-        .navbar-brand .fa-star {
-            margin-right: 4px; /* Espacio entre el icono y el texto */
-            color: #ffd700; /* Color dorado para la estrella */
+        .navbar-custom .navbar-brand .fa-star {
+            margin-right: 4px;
+            color: #ffd700;
         }
 
-        /* Estilos adicionales para navbar */
-        .navbar-nav .nav-item {
-            padding: 0 10px;
+        .navbar-custom .dropdown-menu {
+            border: none;
+            background-color: #333;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: none; /* Ocultar inicialmente */
+        }
+        .navbar-custom .dropdown-item {
+            color: #fff;
             transition: background-color 0.3s;
         }
-        .navbar-nav .nav-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
+        .navbar-custom .dropdown-item:hover {
+            background-color: #555;
         }
-        .navbar-nav .nav-link {
-            color: #fff;
-            transition: color 0.3s;
-        }
-        .navbar-nav .nav-link:hover {
-            color: #39ff14; /* Cambia el color al verde */
+        .navbar-custom .dropdown-menu.show {
+            display: block; /* Mostrar el menú cuando la clase 'show' está presente */
         }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top navbar-custom">
     <div class="container">
         <a class="navbar-brand" href="index.php">
             <i class="fas fa-star"></i>Estrellitas
@@ -78,8 +81,13 @@
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ms-auto">
                 <?php if (isset($_SESSION['usuario_id'])) : ?>
+                    <?php if (isset($_SESSION['es_administrador']) && $_SESSION['es_administrador'] = 1) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin.php">Admin</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user"></i>
@@ -89,6 +97,9 @@
                             <li><a class="dropdown-item" href="pedidos.php"><i class="fas fa-clipboard-list"></i> Mis Pedidos</a></li>
                             <li><a class="dropdown-item" href="perfil.php"><i class="fas fa-user-edit"></i> Mi Perfil</a></li>
                             <li><hr class="dropdown-divider"></li>
+                            <?php if (isset($_SESSION['es_administrador']) && $_SESSION['es_administrador'] == 1) : ?>
+                                <li><a class="dropdown-item" href="admin.php"><i class="fas fa-cogs"></i> Panel de Administrador</a></li>
+                            <?php endif; ?>
                             <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
                         </ul>
                     </li>
@@ -115,27 +126,6 @@
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Script para cambiar el color del texto al hacer hover
-    var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    navLinks.forEach(function(navLink) {
-        navLink.addEventListener('mouseover', function() {
-            this.style.color = '#39ff14'; // Color verde al hacer hover
-        });
-        navLink.addEventListener('mouseout', function() {
-            this.style.color = '#fff'; // Restaura el color original al salir
-        });
-    });
-
-    // Script para animación al desplegar menú dropdown
-    var dropdownToggles = document.querySelectorAll('.navbar-nav .dropdown-toggle');
-    dropdownToggles.forEach(function(toggle) {
-        toggle.addEventListener('click', function() {
-            var dropdownMenu = this.nextElementSibling;
-            dropdownMenu.classList.toggle('show'); // Añade clase 'show' para animación de despliegue
-        });
-    });
-</script>
-
+<script src="js/scripts.js"></script> 
 </body>
 </html>

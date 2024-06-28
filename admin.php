@@ -8,11 +8,6 @@ include 'modales/modal_editar_producto.php';
 include 'modales/modal_agregar_categoria.php';
 include 'modales/modal_editar_categoria.php';
 
-// Redirigir si el usuario no es administrador
-if (!esAdministrador()) {
-    header("Location: login.php");
-    exit;
-}
 
 // Manejar acciones del administradoress
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
