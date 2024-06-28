@@ -498,7 +498,6 @@ function obtenerEstadoPedido($pedido_id) {
 function enviarCorreo($to, $subject, $message) {
     return mail($to, $subject, $message);
 }
-<?php
 function agregarProducto($datos) {
     global $conn; // Asegúrate de que $conn esté disponible
 
