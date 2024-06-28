@@ -498,5 +498,49 @@ function obtenerEstadoPedido($pedido_id) {
 function enviarCorreo($to, $subject, $message) {
     return mail($to, $subject, $message);
 }
+function agregarProducto($datos) {
+    global $conn;
 
+    // ... (Resto del código de validación y manejo de datos) ...
+
+    $imagen = '';
+    $errorSubida = ''; // Variable para almacenar mensaje de error
+
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+        $carpetaDestino = 'img/productos/';
+
+        if (!is_dir($carpetaDestino)) {
+            mkdir($carpetaDestino, 0755, true); 
+        }
+
+        $nombreArchivo = $_FILES['imagen']['name'];
+        $rutaImagen = $carpetaDestino . basename($nombreArchivo);
+
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaImagen)) {
+            $imagen = $rutaImagen;
+        } else {
+            $errorSubida = "Error al subir la imagen. Código de error: " . $_FILES['imagen']['error']; 
+        }
+    }
+
+    // ... (Resto del código para insertar en la base de datos) ...
+
+    if ($stmt->execute()) {
+        // Redireccionar sin enviar salida previa
+        header("Location: admin.php?exito=1"); // Puedes usar un parámetro GET para indicar éxito
+        exit; 
+    } else {
+        $errorSubida = "Error al agregar el producto a la base de datos: " . $stmt->error;
+    }
+
+    $stmt->close();
+
+    // Redireccionar al final, con o sin error
+    if (!empty($errorSubida)) {
+        header("Location: admin.php?error=" . urlencode($errorSubida));
+    } else {
+        header("Location: admin.php?exito=1"); 
+    }
+    exit;
+}
 ?>
