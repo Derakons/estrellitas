@@ -66,6 +66,94 @@ body {
               padding: 2rem; /* Espaciado interno */
               border-radius: 30px; /* Bordes redondeados */
           }
+          /* Prefijo personalizado para evitar conflictos con Bootstrap */
+.custom-form-horizontal .row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 15px; /* Espacio entre los elementos */
+}
+
+.custom-form-horizontal .col-auto {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.custom-form-horizontal .col {
+    flex: 1 1 20%;
+}
+
+.modal-content {
+    padding: 20px;
+}
+
+.modal-title {
+    font-weight: 600;
+}
+
+.modal-header .btn-close {
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.modal-footer button {
+    margin-left: 10px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el modal */
+.modal-dialog.modal-xl {
+    max-width: 2000px; /* Ajusta según el tamaño necesario */
+    margin: 1.75rem auto; /* Centered alignment */
+}
+
+.modal-content {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-control, .form-select {
+    border-radius: 5px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.custom-form-horizontal .form-control,
+.custom-form-horizontal .form-select,
+.custom-form-horizontal .form-control-file {
+    width: 100%;
+}
+
+.btn-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
           /*!
  *   AdminLTE v3.2.0
  *   Author: Colorlib
