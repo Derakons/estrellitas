@@ -93,22 +93,7 @@ $result = $conn->query($sql);
                 </button>
             </form>
             <ul class="navbar-nav ms-auto">
-            <div class="user-list">
-    <?php
-    // Mostrar botón ADMIN para usuarios administradores
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo '<a href="admin.php?id=' . $row["id"] . '" class="admin-button">ADMIN</a>';
-            echo '<br>'; // Añadir un salto de línea para separar los botones
-        }
-    } else {
-        echo "No se encontraron usuarios administradores.";
-    }
 
-    // Cerrar conexión
-    $conn->close();
-    ?>
-</div>
                 <?php if (isset($_SESSION['usuario_id'])) : ?>
                     <?php if (isset($_SESSION['es_administrador']) && $_SESSION['es_administrador'] = 1) : ?>
                         <li class="nav-item">
