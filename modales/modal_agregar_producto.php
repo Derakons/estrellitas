@@ -36,6 +36,7 @@
                             <div class="col-sm-4">
                                 <input type="number" class="form-control" id="precio" name="precio" min="0" step="0.01" required>
                             </div>
+                            <br>
                             <label for="imagen" class="col-sm-2 col-form-label">Imagen:</label>
 <div class="col-sm-4">
     <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" onchange="previewImage(event)">
