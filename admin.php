@@ -255,59 +255,60 @@ if (isset($_SESSION['mensaje'])) {
     <main class="container my-5">
         <h1 class="text-center mb-4">Panel de Administración</h1>
         
-        <!-- Productos -->
-        <div class="cards mb-4">
-            <div class="card-header">
-                <h5 class="card-title">
-                    Productos 
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#agregarProductoModal">
-                        Agregar Producto
-                    </button>
-                </h5>
-            </div>
-            <div class="card-body">
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($productos as $producto) : ?>
-                            <tr>
-                                <td><?= $producto['id']; ?></td>
-                                <td><?= $producto['nombre']; ?></td>
-                                <td><?= number_format($producto['precio'], 2); ?>€</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
-                                        data-bs-target="#editarProductoModal" 
-                                        data-producto-id="<?= $producto['id']; ?>"
-                                        data-producto-nombre="<?= $producto['nombre']; ?>"
-                                        data-producto-descripcion="<?= $producto['descripcion']; ?>"
-                                        data-producto-precio="<?= $producto['precio']; ?>"
-                                        data-producto-imagen="<?= $producto['imagen']; ?>"
-                                        data-producto-categoria-id="<?= $producto['categoria_id']; ?>"
-                                        data-producto-signos-compatibles="<?= $producto['signos_compatibles']; ?>">
-                                        Editar
-                                    </button>
-
-                                    <form method="post" action="admin.php" style="display: inline;">
-                                        <input type="hidden" name="producto_id" value="<?= $producto['id']; ?>">
-                                        <button type="submit" name="eliminar_producto" class="btn btn-danger btn-sm" 
-                                            onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">
-                                            Eliminar
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+ <!-- Tabla de productos -->
+ <div class="cards mb-4">
+        <div class="card-header">
+            <h5 class="card-title">
+                Productos 
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#agregarProductoModal">
+                    Agregar Producto
+                </button>
+            </h5>
         </div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($productos as $producto) : ?>
+                        <tr>
+                            <td><?= htmlspecialchars($producto['id']); ?></td>
+                            <td><?= htmlspecialchars($producto['nombre']); ?></td>
+                            <td><?= number_format($producto['precio'], 2); ?>€</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" 
+                                    data-bs-target="#editarProductoModal" 
+                                    data-producto-id="<?= htmlspecialchars($producto['id']); ?>"
+                                    data-producto-nombre="<?= htmlspecialchars($producto['nombre']); ?>"
+                                    data-producto-descripcion="<?= htmlspecialchars($producto['descripcion']); ?>"
+                                    data-producto-precio="<?= htmlspecialchars($producto['precio']); ?>"
+                                    data-producto-imagen="<?= htmlspecialchars($producto['imagen']); ?>"
+                                    data-producto-categoria-id="<?= htmlspecialchars($producto['categoria_id']); ?>"
+                                    data-producto-signos-compatibles="<?= htmlspecialchars($producto['signos_compatibles']); ?>">
+                                    Editar
+                                </button>
+
+                                <form method="post" action="admin.php" style="display: inline;">
+                                    <input type="hidden" name="producto_id" value="<?= htmlspecialchars($producto['id']); ?>">
+                                    <button type="submit" name="eliminar_producto" class="btn btn-danger btn-sm" 
+                                        onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 
         <!-- Categorías -->
         <div class="cards mb-4">
