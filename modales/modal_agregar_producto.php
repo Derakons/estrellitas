@@ -14,9 +14,69 @@
             padding: 0;
         }
 
-        .modal-dialogs {
-            max-width: 2000px; /* Ajusta según el tamaño necesario */
-        }
+
+.modal-dialog {
+    max-width: 2000px; /* Ajusta según el tamaño necesario */
+    margin: 1.75rem auto; /* Centered alignment */
+}
+
+.modal-content {
+    padding: 20px;
+}
+
+.form-horizontal {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 15px 20px;
+    align-items: center;
+}
+
+.form-group {
+    display: contents; /* Permite que los elementos hijos se alineen correctamente en la cuadrícula */
+}
+
+.form-horizontal .form-label {
+    justify-self: end;
+    font-weight: 600;
+}
+
+.form-horizontal .form-control,
+.form-horizontal .form-select,
+.form-horizontal .form-control-file {
+    width: 80%; /* Ajusta el ancho según sea necesario */
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.modal-footer button {
+    margin-left: 10px;
+}
+
+.btn-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-header .modal-title {
+    font-weight: 600;
+}
+
+.modal-header .btn-close {
+    padding: 0;
+    margin: 0;
+}
+
 
         .modal-content {
             padding: 20px;
