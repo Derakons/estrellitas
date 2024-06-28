@@ -63,8 +63,16 @@ function obtenerCategorias() {
 
 function obtenerPedidos() {
     global $conn;
-    $sql = "SELECT p.*, u.nombre, u.apellidos FROM pedidos p JOIN usuarios u ON p.usuario_id = u.id";
+    $sql = "SELECT p.*, u.nombre, u.apellidos 
+            FROM pedidos p 
+            LEFT JOIN usuarios u ON p.usuario_id = u.id";
     $result = $conn->query($sql);
+
+    if (!$result) {
+        echo "Error en la consulta: " . $conn->error;
+        exit;
+    }
+
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 // Función para obtener el nombre de un producto por su ID
