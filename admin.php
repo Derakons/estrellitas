@@ -256,7 +256,7 @@ if (isset($_SESSION['mensaje'])) {
         <h1 class="text-center mb-4">Panel de Administración</h1>
         
         <!-- Productos -->
-        <div class="card mb-4">
+        <div class="cards mb-4">
             <div class="card-header">
                 <h5 class="card-title">
                     Productos 
