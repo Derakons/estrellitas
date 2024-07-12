@@ -100,11 +100,11 @@ include 'modales/modal_editar_categoria.php';
 </head>
 <body>
 <div class="video-background">
-    <video autoplay muted loop>
-        <source src="img/ra.mp4" type="video/mp4">
-        Tu navegador no soporta el video.
-    </video>
-</div>
+        <video autoplay muted loop>
+            <source src="img/ra.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    </div>
 
 <?php include 'navbar.php'; ?>
 

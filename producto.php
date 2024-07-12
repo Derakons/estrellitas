@@ -100,7 +100,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="img/ra.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    </div>
     <main class="container my-5">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -114,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-md-6 mb-4">
                 <img src="<?php echo htmlspecialchars($producto['imagen']); ?>" class="product-image" alt="<?php echo htmlspecialchars($producto['nombre']); ?>">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" style="background-color: rgba(245, 245, 245, 0.8);">
                 <h1 class="display-4"><?php echo htmlspecialchars($producto['nombre']); ?></h1>
                 <p class="text-muted">Categoría: <?php echo htmlspecialchars($producto['categoria_nombre']); ?></p>
                 <p><?php echo nl2br(htmlspecialchars($producto['descripcion'])); ?></p>

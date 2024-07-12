@@ -228,6 +228,7 @@ if (isset($_SESSION['mensaje'])) {
     echo "<div class='mensaje'>" . $_SESSION['mensaje'] . "</div>";
     unset($_SESSION['mensaje']);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -244,14 +245,19 @@ if (isset($_SESSION['mensaje'])) {
     </style>
 </head>
 <body>
-
+<div class="video-background">
+        <video autoplay muted loop>
+            <source src="img/ra.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    </div>
     <?php include 'navbar.php'; ?>
 
     <main class="container my-5">
-        <h1 class="text-center mb-4">Panel de Administración</h1>
+        <h1 class="text-center mb-4" style="background-color: rgba(245, 245, 245, 0.8);">Panel de Administración</h1>
         
  <!-- Tabla de productos -->
- <div class="cards mb-4">
+ <div class="cards mb-4" style="background-color: rgba(245, 245, 245, 0.8);">
         <div class="card-header">
             <h5 class="card-title">
                 Productos 
@@ -306,7 +312,7 @@ if (isset($_SESSION['mensaje'])) {
 
 
         <!-- Categorías -->
-        <div class="cards mb-4">
+        <div class="cards mb-4" style="background-color: rgba(245, 245, 245, 0.8);">
             <div class="card-header">
                 <h5 class="card-title">
                     Categorías
@@ -353,7 +359,7 @@ if (isset($_SESSION['mensaje'])) {
         </div>
 
         <!-- Pedidos -->
-        <div class="cards">
+        <div class="cards" style="background-color: rgba(245, 245, 245, 0.8);">
             <div class="card-header">
                 <h5 class="card-title">Pedidos</h5>
             </div>

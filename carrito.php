@@ -92,8 +92,13 @@ foreach ($_SESSION['carrito'] as $item) {
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-
-    <main class="container my-5">
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="img/ra.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    </div>
+    <main  class="container my-5 transparent-bg">
         <h1 class="display-4 text-center mb-4">Carrito de Compras</h1>
 
         <?php if (empty($_SESSION['carrito'])) : ?>
@@ -118,8 +123,7 @@ foreach ($_SESSION['carrito'] as $item) {
                                 <?php $producto = $productos[$item['id']]; ?>
                                 <tr>
                                     <td>
-                                        <img src="<?php echo htmlspecialchars($producto['imagen']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" class="product-image" width="200" height="200">
-                                        <?php echo htmlspecialchars($producto['nombre']); ?>
+                                    <img src="imagenes/productos/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" class="product-image" width="50" height="50">                                         <?php echo htmlspecialchars($producto['nombre']); ?>
                                     </td>
                                     <td><?php echo number_format($producto['precio'], 2); ?>€</td>
                                     <td>
